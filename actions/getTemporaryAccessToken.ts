@@ -2,6 +2,7 @@
 
 import { currentUser } from "@clerk/nextjs/server";
 
+// For component usage: https://docs.schematichq.com/components/set-up
 // Initialize Schematic SDK
 import { SchematicClient } from "@schematichq/schematic-typescript-node";
 const apiKey = process.env.SCHEMATIC_API_KEY;
@@ -15,7 +16,7 @@ export async function getTemporaryAccessToken(companyId: string) {
   }
   const resp = await client.accesstokens.issueTemporaryAccessToken({
     resource_type: "company",
-    lookup: { id: user.id }, 
+    lookup: { id: user.id },
   });
   return resp.data?.token;
 }
