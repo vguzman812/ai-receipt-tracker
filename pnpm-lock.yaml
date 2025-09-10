@@ -20,6 +20,9 @@ importers:
       '@schematichq/schematic-components':
         specifier: ^1.6.0
         version: 1.6.0(@stripe/react-stripe-js@4.0.2(@stripe/stripe-js@7.9.0)(react-dom@19.1.1(react@19.1.1))(react@19.1.1))(react-dom@19.1.1(react@19.1.1))(react@19.1.1)(typescript@5.9.2)
+      '@schematichq/schematic-react':
+        specifier: ^1.2.5
+        version: 1.2.5(react@19.1.1)
       '@schematichq/schematic-typescript-node':
         specifier: ^1.2.2
         version: 1.2.2
@@ -590,6 +593,14 @@ packages:
       react: ^16.8.0 || ^17.0.0 || ^18.0.0 || ^19.0.0
       react-dom: ^16.8.0 || ^17.0.0 || ^18.0.0 || ^19.0.0
 
+  '@schematichq/schematic-js@1.2.3':
+    resolution: {integrity: sha512-VHq6QuMFzPc3xko4btKz4RDoR8Mvb+mDmKQmj7Zyk+cYDQ/hYd9unhuZXJJIWiHPdWSiWyWmbiEX1Y62e3y6eQ==}
+
+  '@schematichq/schematic-react@1.2.5':
+    resolution: {integrity: sha512-BuMCoLFllrlI7T5MRvYyabK3V/8ljLeENNwRzp3pzoxXFhNVyrMD0mJZVGh8F3NyYHKp1j7+4fDtw/zRZQyqug==}
+    peerDependencies:
+      react: '>=18'
+
   '@schematichq/schematic-typescript-node@1.2.2':
     resolution: {integrity: sha512-fN+8quTvBoqm4f/hk9iuED4zNZOY2PBg5GcFlHMSqdyijgnUa294AKI8Fc86o1l4nhJUesNWGaE5gGYLzugZ1A==}
 
@@ -1080,6 +1091,9 @@ packages:
   cookie@1.0.2:
     resolution: {integrity: sha512-9Kr/j4O16ISv8zBBhJoi4bXOYNTkFLOqSL3UDB0njXxCXNezjeyVrJyGOWtgfs/q2km1gwBcfH8q1yEGoMYunA==}
     engines: {node: '>=18'}
+
+  cross-fetch@4.1.0:
+    resolution: {integrity: sha512-uKm5PU+MHTootlWEY+mZ4vvXoCn4fLQxT9dSc1sXVMSFkINTJVN8cAQROpwcKm8bJ/c7rgZVIBWzH5T78sNZZw==}
 
   cross-spawn@6.0.6:
     resolution: {integrity: sha512-VqCUuhcd1iB+dsv8gxPttb5iZh/D0iubSP21g36KXdEuf6I5JiioesUVjpCdHV9MZRUfVFlvwtIUyPfxo5trtw==}
@@ -2395,6 +2409,10 @@ packages:
     peerDependencies:
       react: ^16.8.0 || ^17.0.0 || ^18.0.0 || ^19.0.0
 
+  uuid@11.1.0:
+    resolution: {integrity: sha512-0/A9rDy9P7cJ+8w1c9WD9V//9Wj15Ce2MPz8Ri6032usz+NfePxx5AcN3bN+r6ZL6jEo066/yNYB3tn4pQEx+A==}
+    hasBin: true
+
   uuid@12.0.0:
     resolution: {integrity: sha512-USe1zesMYh4fjCA8ZH5+X5WIVD0J4V1Jksm1bFTVBX2F/cwSXt0RO5w/3UXbdLKmZX65MiWV+hwhSS8p6oBTGA==}
     hasBin: true
@@ -2844,6 +2862,20 @@ snapshots:
       react: 19.1.1
       react-dom: 19.1.1(react@19.1.1)
       styled-components: 6.1.19(react-dom@19.1.1(react@19.1.1))(react@19.1.1)
+
+  '@schematichq/schematic-js@1.2.3':
+    dependencies:
+      cross-fetch: 4.1.0
+      uuid: 11.1.0
+    transitivePeerDependencies:
+      - encoding
+
+  '@schematichq/schematic-react@1.2.5(react@19.1.1)':
+    dependencies:
+      '@schematichq/schematic-js': 1.2.3
+      react: 19.1.1
+    transitivePeerDependencies:
+      - encoding
 
   '@schematichq/schematic-typescript-node@1.2.2':
     dependencies:
@@ -3342,6 +3374,12 @@ snapshots:
       react: 19.1.1
 
   cookie@1.0.2: {}
+
+  cross-fetch@4.1.0:
+    dependencies:
+      node-fetch: 2.7.0
+    transitivePeerDependencies:
+      - encoding
 
   cross-spawn@6.0.6:
     dependencies:
@@ -4897,6 +4935,8 @@ snapshots:
   use-sync-external-store@1.5.0(react@19.1.1):
     dependencies:
       react: 19.1.1
+
+  uuid@11.1.0: {}
 
   uuid@12.0.0: {}
 
