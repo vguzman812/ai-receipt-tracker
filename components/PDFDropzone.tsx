@@ -14,9 +14,11 @@ import { useCallback, useState, useRef } from "react";
 import { useUser } from "@clerk/nextjs";
 import { useRouter } from "next/navigation";
 import { useSchematicEntitlement } from "@schematichq/schematic-react";
+import { uploadPDF } from "@/actions/uploadPDF";
 
 function PDFDropzone({ children }: { children: React.ReactNode }) {
   const [isDraggingOver, setIsDraggingOver] = useState(false);
+
   const [isUploading, setIsUploading] = useState(false);
   const [uploadedFiles, setUploadedFiles] = useState<File[]>([]);
 
@@ -52,32 +54,41 @@ function PDFDropzone({ children }: { children: React.ReactNode }) {
         alert("Please sign in to upload PDFs");
         return;
       }
+
       const fileArray = Array.from(files);
       const pdfFiles = fileArray.filter(
         (file) =>
           file.type === "application/pdf" ||
           file.name.toLowerCase().endsWith("pdf"),
       );
+
       if (pdfFiles.length === 0) {
         alert("Please drop only PDF files.");
         return;
       }
+
       // TODO: implement transition state
       setIsUploading(true);
+
       try {
         // Upload files
         const newUploadedFiles: string[] = [];
+
         for (const file of pdfFiles) {
           // create a formData object to use with the server action
           // emulating a 'submit'
           const formData = new FormData();
           formData.append("file", file);
+
           const result = await uploadPDF(formData);
+
           if (!result.success) {
             throw new Error(result.error);
           }
+
           newUploadedFiles.push(file.name);
         }
+
         setUploadedFiles((prev) => [...prev, ...newUploadedFiles]);
 
         // Clear uploaded files list after 5 seconds
@@ -85,7 +96,6 @@ function PDFDropzone({ children }: { children: React.ReactNode }) {
           setUploadedFiles([]);
         }, 5000);
         router.push("/receipts");
-        
       } catch (error) {
         console.error("Upload failed:", error);
         alert(
@@ -115,12 +125,12 @@ function PDFDropzone({ children }: { children: React.ReactNode }) {
     [user, handleUpload],
   );
 
-  // const canUpload = isUserSignedIn && isFeatureEnabled
-  const canUpload = true;
+  const isUserSignedIn = !!user;
+  const canUpload = isUserSignedIn && isFeatureEnabled;
 
   return (
     <DndContext sensors={sensors}>
-      <div className="w-full max-w-md mx-auto bg-red-400">
+      <div className="w-full max-w-md mx-auto">
         <div
           onDragOver={canUpload ? handleDragOver : undefined}
           onDragLeave={canUpload ? handleDragLeave : undefined}
