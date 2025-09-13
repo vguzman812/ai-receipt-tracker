@@ -46,6 +46,8 @@ const saveToDatabaseTool = createTool({
   name: "saveToDatabase",
   description: "save the given data regarding receipts to the convex database.",
   // There's some mismatch of zod typying happening here, so as unknown as AnyZodType is the best option I can be bothered with atm.
+  // Turns out it's because inngest uses zod ^3.25 and newest zod is ^4.1, so there was an issue with type compatability between the two.
+  // Fixed by using the same version of zod inngest uses.
   parameters: receiptSchema as unknown as AnyZodType,
   handler: async (params, context) => {
     const {
