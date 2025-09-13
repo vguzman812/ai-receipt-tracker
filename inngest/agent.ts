@@ -15,7 +15,7 @@ const agentNetwork = createNetwork({
   name: "Agent Team",
   agents: [databaseAgent, receiptScanningAgent],
   defaultModel: anthropic({
-    model: "claude-3-5-sonnet-20241022",
+    model: "claude-3-7-sonnet-latest",
     defaultParameters: { max_tokens: 1000 },
   }),
   defaultRouter: ({ network }) => {
