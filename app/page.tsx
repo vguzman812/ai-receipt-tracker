@@ -1,3 +1,4 @@
+import PDFDropzone from "@/components/PDFDropzone";
 import { Button } from "@/components/ui/button";
 import { ArrowRight, BarChart, Search, Shield, Upload } from "lucide-react";
 import Link from "next/link";
@@ -34,7 +35,7 @@ const Home = () => {
           <div className="mt-12 flex justify-center">
             <div className="relative w-full max-w-3xl rounded-lg border border-gray-200 bg-white shadow-lg overflow-hidden dark:border-gray-800 dark:bg-gray-950">
               <div className="p-6 md:p-8 relative">
-                <p>PDF dropzone goes here...</p>
+                <PDFDropzone />
               </div>
             </div>
           </div>
