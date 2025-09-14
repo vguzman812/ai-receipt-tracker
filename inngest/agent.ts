@@ -37,11 +37,13 @@ export const server = createServer({
 export const extractAndSavePDF = inngest.createFunction(
   {
     id: "Extract PDF and Save in Database",
+    concurrency: 1,
   },
   {
     event: Events.EXTRACT_DATA_FROM_PDF_AND_SAVE_TO_DATABASE,
   },
   async ({ event }) => {
+
     const result = await agentNetwork.run(
       `extract the key data from this pdf: ${event.data.pdfUrl}.
       Once the data is extracted, save it to the database using the receiptId:${event.data.receiptId}.

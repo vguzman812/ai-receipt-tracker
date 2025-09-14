@@ -68,16 +68,16 @@ export async function uploadPDF(formData: FormData) {
       data: {
         pdfUrl: fileUrl.downloadUrl,
         receiptId,
-      }
-    })
+      },
+    });
 
     return {
       success: true,
       data: {
-        receiptId, fileName: file.name
-      }
-    }
-
+        receiptId,
+        fileName: file.name,
+      },
+    };
   } catch (error) {
     console.error("Server action upload error:", error);
     return {

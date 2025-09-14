@@ -70,7 +70,9 @@ const saveToDatabaseTool = createTool({
           const { userId } = await convex.mutation(
             api.receipts.updateReceiptWithExtractedData,
             {
-              id: receiptId as Id<"receipts">,
+              id: receiptId.includes('"')
+                ? JSON.parse(receiptId)
+                : (receiptId as Id<"receipts">),
               fileDisplayName,
               merchantName,
               merchantAddress,
