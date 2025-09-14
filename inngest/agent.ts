@@ -19,7 +19,7 @@ const agentNetwork = createNetwork({
     defaultParameters: { max_tokens: 1000 },
   }),
   defaultRouter: ({ network }) => {
-    const savedToDatabase = network.state.kv.get("saveed-to-database");
+    const savedToDatabase = network.state.kv.get("saved-to-database");
     if (savedToDatabase !== undefined) {
       // Terminate the agent process if the data has been saved to the database
       return undefined;

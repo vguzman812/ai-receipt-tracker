@@ -22,7 +22,7 @@ const receiptSchema = z.object({
   merchantContact: z.string(),
   transactionDate: z.string(),
   transactionAmount: z
-    .string()
+    .number()
     .describe(
       "The total amount of the transaction, summing all the items on the receipt.",
     ),
@@ -113,8 +113,9 @@ const saveToDatabaseTool = createTool({
     );
     if (result?.addedToDb) {
       // Only set KV values if the receipt was successfully saved to the database
-      context.network?.state.kv.set("saveed-to-database", true);
+      context.network?.state.kv.set("saved-to-database", true);
       context.network?.state.kv.set("receipt", receiptId);
+
     }
     return result;
   },

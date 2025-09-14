@@ -39,6 +39,7 @@ export const storeReceipt = mutation({
       currency: undefined,
       items: [],
     });
+    return receiptId;
   },
 });
 
